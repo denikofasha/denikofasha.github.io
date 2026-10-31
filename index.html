@@ -134,9 +134,7 @@ nav ul a:hover{color:var(--ink)}
 .vcats{display:flex;flex-wrap:wrap;gap:0;margin-top:28px;border:1px solid var(--line)}
 .vcats div{flex:1 1 150px;padding:16px 18px;border-left:1px solid var(--line)}
 .vcats div:first-child{border-left:0}
-.arch{margin-top:72px}
-#vmore{margin-top:24px;cursor:pointer;background:transparent;color:var(--ink);font-family:var(--sans)}
-#vmore[hidden]{display:none}
+.arch{margin-top:72px;scroll-margin-top:80px}
 .vcats strong{font-family:var(--serif);font-size:28px;font-weight:400;display:block}
 .vcats span{font-size:13px;color:var(--graphite)}
 /* timeline */
@@ -190,7 +188,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="#top">Deniko<span>.</span></a>
-<ul><li><a href="#about">Tentang</a></li><li><a href="#work">Karya Utama</a></li><li><a href="#design">Desain</a></li><li><a href="#build">3D & Konstruksi</a></li><li><a href="#video">Video</a></li><li><a href="#contact">Kontak</a></li></ul></div></nav>
+<ul><li><a href="#about">Tentang</a></li><li><a href="#work">Karya Utama</a></li><li><a href="#design">Desain</a></li><li><a href="#build">3D & Konstruksi</a></li><li><a href="#video">Video</a></li><li><a href="#arsip">Arsip Video</a></li><li><a href="#contact">Kontak</a></li></ul></div></nav>
 
 <header class="hero" id="top"><div class="wrap">
  <div>
@@ -336,12 +334,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
  <div class="vcats">
   <div><strong>17</strong><span>Dokumentasi acara</span></div><div><strong>13</strong><span>Konten media sosial</span></div><div><strong>16</strong><span>Episode edukasi</span></div><div><strong>8</strong><span>Logo animation</span></div><div><strong>5</strong><span>Trailer & bumper</span></div><div><strong>4</strong><span>Visualisasi 3D</span></div>
  </div>
- <div class="arch">
+ <div class="arch" id="arsip">
   <h3>Arsip video</h3>
   <p class="lead" style="margin:8px 0 24px">Semua video, dikelompokkan per kategori. Klik kartu untuk menonton versi penuh.</p>
   <div class="chips" id="vchips"></div>
   <div class="vgrid" id="varch"></div>
-  <button class="btn" id="vmore" type="button" hidden></button>
  </div>
 </div></section>
 
@@ -443,20 +440,15 @@ function renderCards(el,list){
 }
 function renderVideos(){renderCards(vg,V)}
 
-// Arsip: data dari js/videos.js. Tab "Semua" menampilkan 9 dulu, kategori menampilkan semuanya.
+// Arsip: data dari js/videos.js, semua video langsung tampil dan bisa disaring per kategori.
 const VA=(window.VIDEO_ARCHIVE||[]).map(v=>({...v,sub:(window.VIDEO_CATS||{})[v.cat]||''}));
-const vchips=document.getElementById('vchips'),vmore=document.getElementById('vmore');
-let vcat='all',vall=false;
-function renderArchive(){
- const list=VA.filter(v=>vcat==='all'||v.cat===vcat),lim=vcat==='all'&&!vall?9:list.length;
- renderCards(va,list.slice(0,lim));
- vmore.hidden=lim>=list.length;vmore.textContent=`Tampilkan semua (${list.length})`;
-}
+const vchips=document.getElementById('vchips');
+let vcat='all';
+function renderArchive(){renderCards(va,VA.filter(v=>vcat==='all'||v.cat===vcat));}
 if(VA.length){
  const cats=Object.entries(window.VIDEO_CATS||{}).filter(([k])=>VA.some(v=>v.cat===k));
  vchips.innerHTML=`<button class="chip on" data-f="all" type="button">Semua (${VA.length})</button>`+cats.map(([k,l])=>`<button class="chip" data-f="${esc(k)}" type="button">${esc(l)} (${VA.filter(v=>v.cat===k).length})</button>`).join('');
- vchips.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;vchips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));vcat=b.dataset.f;vall=false;renderArchive();};
- vmore.onclick=()=>{vall=true;renderArchive();};
+ vchips.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;vchips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));vcat=b.dataset.f;renderArchive();};
  renderArchive();
 }else document.querySelector('.arch').hidden=true;
 
