@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deniko Fadila Fasha — Portfolio</title>
+<meta name="description" content="Graphic Designer · 3D Visualizer · Project Planner. Designing what people see — and what gets built.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: technical-drawing sheet — 12-col grid, title-block labels, blueprint band for construction */
+:root{--ink:#111418;--paper:#F1F3F2;--card:#E3E7E6;--graphite:#56606A;--line:#D3D9D8;--signal:#2446C8;--bp:#16294A;--bp-ink:#E9EEF5;--on-ink:#F1F3F2;
+--serif:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#E8ECEB;--paper:#0F1214;--card:#1A1F22;--graphite:#97A1AA;--line:#283036;--signal:#7D97FF;--bp:#0E1B30;--on-ink:#0F1214;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#E8ECEB;--paper:#0F1214;--card:#1A1F22;--graphite:#97A1AA;--line:#283036;--signal:#7D97FF;--bp:#0E1B30;--on-ink:#0F1214;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.label{display:flex;align-items:center;gap:12px;color:var(--graphite);margin-bottom:28px}
+.label::after{content:"";flex:1;height:1px;background:var(--line)}
+.label b{color:var(--signal);font-weight:500}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.04;letter-spacing:-.025em;text-wrap:balance}
+h2{font-size:clamp(32px,4.4vw,52px);margin-bottom:20px}
+h3{font-size:clamp(24px,2.6vw,32px)}
+section{padding:120px 0;border-top:1px solid var(--line)}
+p.lead{font-size:19px;color:var(--graphite);max-width:62ch}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+nav .brand{font-family:var(--serif);font-size:20px;text-decoration:none}
+nav .brand span{color:var(--signal)}
+nav ul{display:flex;gap:28px;list-style:none}
+nav ul a{text-decoration:none;color:var(--graphite);font-size:14px}
+nav ul a:hover{color:var(--ink)}
+/* hero */
+.hero{padding:72px 0 96px;border:0}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(48px,7.4vw,96px);margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--signal)}
+.roles{font-family:var(--mono);font-size:14px;color:var(--ink);margin-bottom:18px}
+.tag{font-family:var(--serif);font-size:22px;color:var(--graphite);margin-bottom:34px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 22px;border:1px solid var(--ink);text-decoration:none;font-size:14px;font-weight:500;transition:.2s}
+.btn.solid{background:var(--ink);color:var(--on-ink)}
+.btn:hover,.btn:focus-visible{background:var(--signal);border-color:var(--signal);color:#fff}
+.collage{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;aspect-ratio:1/1.02}
+.collage figure{position:relative;overflow:hidden;background:var(--card)}
+.collage figure:first-child{grid-row:span 2}
+.collage img{width:100%;height:100%;object-fit:cover}
+.collage figcaption{position:absolute;left:10px;bottom:10px;background:var(--paper);color:var(--ink);padding:3px 8px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:72px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats div{padding:20px 0 20px 20px;border-left:1px solid var(--line)}
+.stats div:first-child{border-left:0;padding-left:0}
+.stats strong{display:block;font-family:var(--serif);font-size:38px;font-weight:400}
+.stats span{color:var(--graphite);font-size:13px}
+/* about */
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:64px}
+.about p{margin-bottom:16px;max-width:62ch}
+.about .big{font-family:var(--serif);font-size:clamp(24px,2.6vw,32px);line-height:1.25;font-weight:600;letter-spacing:-.02em}
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line)}
+.skill{padding:28px 24px;border-left:1px solid var(--line)}
+.skill:first-child{border-left:0}
+.skill .mono{color:var(--signal);margin-bottom:14px}
+.skill h3{font-size:24px;margin-bottom:12px}
+.skill p{color:var(--graphite);font-size:15px}
+.tools{margin-top:24px;color:var(--graphite);font-size:14px}
+.tools code{font-family:var(--mono);font-size:12px;padding:3px 8px;border:1px solid var(--line);margin:0 4px 6px 0;display:inline-block;color:var(--ink)}
+/* projects */
+.proj{display:grid;grid-template-columns:1.45fr 1fr;gap:48px;align-items:start;margin-bottom:96px}
+.proj:last-child{margin-bottom:0}
+.proj:nth-child(even) .pm{order:2}
+.pm{display:grid;gap:10px}
+.pm.g2{grid-template-columns:1fr 1fr}
+.pm .main{grid-column:1/-1}
+.pm figure{background:var(--card);overflow:hidden;cursor:zoom-in}
+.pm img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pm figure:hover img{transform:scale(1.03)}
+.pm .main img{aspect-ratio:16/10}
+.pm .sub img{aspect-ratio:4/3}
+.pt .mono{color:var(--signal)}
+.pt h3{margin:10px 0 16px}
+.pt p{color:var(--graphite);margin-bottom:18px}
+.meta{border-top:1px solid var(--line);font-size:14px}
+.meta div{display:grid;grid-template-columns:96px 1fr;padding:9px 0;border-bottom:1px solid var(--line)}
+.meta dt{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--graphite);padding-top:2px}
+.nums{display:flex;gap:28px;margin-top:20px;flex-wrap:wrap}
+.nums strong{display:block;font-family:var(--serif);font-size:30px;font-weight:400}
+.nums span{font-size:12px;color:var(--graphite)}
+.note{font-size:12px;color:var(--graphite);margin-top:14px;font-style:italic}
+/* gallery */
+.chips{display:flex;gap:8px;margin-bottom:28px;overflow-x:auto;padding-bottom:4px}
+.chip{font:500 13px var(--sans);padding:8px 16px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.masonry{columns:3 280px;column-gap:14px}
+.masonry figure{break-inside:avoid;margin-bottom:14px;background:var(--card);position:relative;cursor:zoom-in;overflow:hidden}
+.masonry figcaption{padding:10px 12px 12px;font-size:13px;color:var(--graphite)}
+.masonry figcaption b{display:block;color:var(--ink);font-weight:500}
+.masonry figure.hide{display:none}
+/* blueprint */
+.bp{background:var(--bp);color:var(--bp-ink);border:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px}
+.bp .label{color:#9FB2CC}.bp .label::after{background:rgba(255,255,255,.18)}
+.bp p.lead{color:#B9C6D8}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:36px 0 64px}
+.steps figure{cursor:zoom-in}
+.steps img{aspect-ratio:4/3;object-fit:cover;width:100%;border:1px solid rgba(255,255,255,.15)}
+.steps figcaption{margin-top:10px;color:#B9C6D8}
+.steps figcaption b{color:#fff;display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.models{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.models figure{cursor:zoom-in}
+.models img{aspect-ratio:16/10;object-fit:cover;width:100%}
+.models figcaption{font-size:13px;color:#B9C6D8;margin-top:8px}
+/* video */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vcard{background:var(--card);display:block;width:100%;border:0;padding:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.vcard .th{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
+.vcard img,.vcard video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vcard video{opacity:0;transition:opacity .3s}
+.vcard.playing video{opacity:1}
+.vcard .badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;z-index:1}
+.vcard .play{position:absolute;right:10px;bottom:10px;z-index:1;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.6);display:grid;place-items:center}
+.vcard .play::before{content:"";border-left:13px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.vcard:hover .play,.vcard:focus-visible .play{background:var(--signal)}
+.vcard div.t{padding:14px 16px}
+.vcard div.t b{display:block;font-weight:500}
+.vcard div.t span{font-size:13px;color:var(--graphite)}
+.vcats{display:flex;flex-wrap:wrap;gap:0;margin-top:28px;border:1px solid var(--line)}
+.vcats div{flex:1 1 150px;padding:16px 18px;border-left:1px solid var(--line)}
+.vcats div:first-child{border-left:0}
+.vcats strong{font-family:var(--serif);font-size:28px;font-weight:400;display:block}
+.vcats span{font-size:13px;color:var(--graphite)}
+/* timeline */
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+.tl li{list-style:none;display:grid;grid-template-columns:110px 1fr;padding:16px 0;border-bottom:1px solid var(--line)}
+.tl .yr{font-family:var(--mono);font-size:12px;color:var(--signal);padding-top:3px}
+.tl b{font-weight:500;display:block}
+.tl span{color:var(--graphite);font-size:14px}
+/* contact */
+.contact{text-align:left}
+.contact h2{font-size:clamp(36px,5.6vw,72px);max-width:16ch}
+.contact a.mail{font-family:var(--serif);font-size:clamp(22px,3vw,34px);color:var(--signal);font-weight:600;text-decoration:none;border-bottom:2px solid currentColor}
+.wa-row{margin:28px 0 8px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.cform{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px;max-width:760px}
+.cform label{display:grid;gap:6px;font-size:13px;color:var(--graphite)}
+.cform .full{grid-column:1/-1}
+.cform input,.cform textarea{font:16px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--line);padding:12px 14px;border-radius:0;width:100%}
+.cform textarea{min-height:140px;resize:vertical}
+.cform input:focus,.cform textarea:focus{border-color:var(--signal);outline:none}
+.cform .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.cform button.btn{cursor:pointer;font-family:var(--sans);justify-self:start}
+.cform button[disabled]{opacity:.6;cursor:wait}
+#cstatus{font-size:14px;color:var(--graphite);align-self:center}
+#cstatus.ok{color:var(--signal)}
+footer{padding:28px 0;border-top:1px solid var(--line);color:var(--graphite)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+/* lightbox */
+#lb{position:fixed;inset:0;background:rgba(10,11,13,.94);display:none;align-items:center;justify-content:center;z-index:50;padding:24px;flex-direction:column;gap:14px}
+#lb.on{display:flex}
+#lb img{max-height:84vh;max-width:100%;object-fit:contain}
+#lb .vf{width:min(1100px,100%);aspect-ratio:16/9;max-height:80vh;background:#000}
+#lb .vf iframe,#lb .vf video{width:100%;height:100%;border:0;display:block}
+#lb p{color:#ddd;font-size:14px;text-align:center}
+#lb button{position:absolute;top:16px;right:20px;background:none;border:0;color:#fff;font-size:32px;cursor:pointer}
+@media (max-width:1023px){
+ .hero .wrap,.about,.proj{grid-template-columns:1fr;gap:36px}
+ .proj:nth-child(even) .pm{order:0}
+ .skills{grid-template-columns:1fr 1fr}.skill:nth-child(3){border-left:0}.skill:nth-child(n+3){border-top:1px solid var(--line)}
+ .steps{grid-template-columns:1fr 1fr}.models,.vgrid{grid-template-columns:1fr 1fr}.tl{grid-template-columns:1fr}
+}
+@media (max-width:639px){
+ .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}section{padding:72px 0}
+ nav ul{display:none}
+ .stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border-left:0;padding-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}
+ .skills{grid-template-columns:1fr}.skill{border-left:0;border-top:1px solid var(--line)}.skill:first-child{border-top:0}
+ .models,.vgrid{grid-template-columns:1fr}.tl li{grid-template-columns:84px 1fr}
+ .cform{grid-template-columns:1fr}
+ .collage{aspect-ratio:auto;grid-template-rows:200px 200px}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="#top">Deniko<span>.</span></a>
+<ul><li><a href="#about">Tentang</a></li><li><a href="#work">Karya Utama</a></li><li><a href="#design">Desain</a></li><li><a href="#build">3D & Konstruksi</a></li><li><a href="#video">Video</a></li><li><a href="#contact">Kontak</a></li></ul></div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+ <div>
+  <p class="mono" style="color:var(--signal)">Portfolio · 2026</p>
+  <h1>Deniko<br>Fadila <em>Fasha</em></h1>
+  <p class="roles">Graphic Designer · 3D Visualizer · Project Planner</p>
+  <p class="tag">Designing what people see, and what gets built.</p>
+  <div class="btns"><a class="btn solid" href="#work">Lihat Karya</a><a class="btn" href="#contact">Hubungi Saya</a></div>
+ </div>
+ <div class="collage">
+  <figure><img src="assets/g-najeeh.jpg" alt="Poster Najeeh Bazaar"><figcaption class="mono">Graphic</figcaption></figure>
+  <figure><img src="assets/t-rumah-klinik.jpg" alt="Render rumah klinik"><figcaption class="mono">3D</figcaption></figure>
+  <figure><img src="assets/t-tabligh.jpg" alt="Denah 3D Tabligh Akbar"><figcaption class="mono">Planning</figcaption></figure>
+ </div>
+</div>
+<div class="wrap"><div class="stats">
+ <div><strong>2017</strong><span>mulai mendesain</span></div>
+ <div><strong>70+</strong><span>karya visual & 3D</span></div>
+ <div><strong>63</strong><span>video & motion</span></div>
+ <div><strong>6</strong><span>proyek gedung kampus</span></div>
+</div></div></header>
+
+<section id="about"><div class="wrap">
+ <div class="label mono"><b>01</b> Tentang</div>
+ <div class="about">
+  <p class="big">Desainer visual yang juga terbiasa terjun ke lapangan proyek.</p>
+  <div>
+   <p>Saya mulai belajar desain grafis secara otodidak pada 2017 di Pondok Modern Darussalam Gontor. Awalnya poster dan sampul majalah, lalu minat itu meluas ke video editing pada 2020 dan pemodelan 3D pada 2021.</p>
+   <p>Kini saya bekerja di bagian pembangunan Gontor Kampus 3. Pekerjaan saya meliputi model 3D gedung dan tata letak acara, gambar kerja, dokumentasi serta laporan proyek, dan materi visual untuk berbagai kegiatan lembaga. Selain itu saya mengajar dan membimbing santri di bidang fotografi, videografi, dan kesekretariatan.</p>
+   <p>Saya terbiasa bekerja dari brief sampai hasil akhir: file siap cetak, video siap tayang, atau bangunan yang benar-benar berdiri.</p>
+  </div>
+ </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+ <div class="label mono"><b>02</b> Keahlian</div>
+ <div class="skills">
+  <div class="skill"><p class="mono">Utama</p><h3>Graphic Design</h3><p>Kampanye promosi, poster & photo manipulation, cover majalah dan laporan, apparel, tipografi Latin–Arab.</p></div>
+  <div class="skill"><p class="mono">Utama</p><h3>3D Visualization</h3><p>Model gedung & venue acara di SketchUp, render, dan gambar kerja teknis.</p></div>
+  <div class="skill"><p class="mono">Utama</p><h3>Video & Motion</h3><p>Dokumentasi acara, logo reveal, visualisasi arsitektur, dan seri konten edukasi.</p></div>
+  <div class="skill"><p class="mono">Utama</p><h3>Planning & Docs</h3><p>Laporan proyek, RAB vs realisasi, kurva S, kebutuhan sarana, dan koordinasi vendor.</p></div>
+ </div>
+ <p class="tools">Tools: <code>SketchUp</code><code>CorelDRAW</code><code>Adobe Premiere Pro</code><code>MS Word</code><code>MS Excel</code></p>
+</div></section>
+
+<section id="work"><div class="wrap">
+ <div class="label mono"><b>03</b> Karya Utama</div>
+ <h2 style="margin-bottom:64px">Empat proyek, empat cara<br>mengubah ide menjadi nyata.</h2>
+
+ <article class="proj">
+  <div class="pm g2">
+   <figure class="main"><img loading="lazy" src="assets/t-expo.jpg" alt="Denah 3D Expo eksternal 100 Tahun Gontor"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/t-u30.jpg" alt="Denah 3D Liga U-30"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/t-expo-gate.jpg" alt="Gerbang Expo 100 Tahun"></figure>
+  </div>
+  <div class="pt">
+   <p class="mono">F-01 · 2025 · Event Planning</p>
+   <h3>Masterplan Sarana Peringatan 100 Tahun Gontor</h3>
+   <p>Enam acara besar dalam tiga minggu, dengan lima vendor dan kebutuhan sarana yang berbeda-beda. Saya memodelkan setiap venue dalam 3D, mulai dari panggung, terop, rigging, area VIP, sampai barikade, lalu merangkum kebutuhan dan penawaran vendor ke satu dokumen masterplan. Dengan dokumen itu, pimpinan bisa melihat dan menyetujui acara sebelum satu tiang pun didirikan.</p>
+   <dl class="meta"><div><dt>Peran</dt><dd>Desain layout 3D, penyusun masterplan</dd></div><div><dt>Tools</dt><dd>SketchUp · CorelDRAW · MS Word</dd></div><div><dt>Output</dt><dd>Dokumen 19 hlm, 8+ denah 3D</dd></div></dl>
+   <div class="nums"><div><strong>6</strong><span>rangkaian acara</span></div><div><strong>5</strong><span>vendor</span></div><div><strong>485 m</strong><span>barikade direncanakan</span></div></div>
+  </div>
+ </article>
+
+ <article class="proj">
+  <div class="pm g2">
+   <figure class="main"><img loading="lazy" src="assets/c-mess-3d-evolution.jpg" alt="Evolusi desain 3D Mess Lapangan"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/c-mess-final.jpg" alt="Kondisi akhir Mess Lapangan"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/c-suargo-detail.jpg" alt="Gambar kerja detail pondasi"></figure>
+  </div>
+  <div class="pt">
+   <p class="mono">F-02 · 2026 · Construction & Documentation</p>
+   <h3>Renovasi Mess Lapangan</h3>
+   <p>Gedung lama yang tidak layak dan 70 cm lebih rendah dari lapangan direnovasi menjadi mess santri, empat kamar mandi, dan tempat wudu. Desainnya melewati empat iterasi 3D dan dua belas lembar gambar kerja. Saya menyusun dokumentasi proyek 56 halaman yang memuat RAB, kurva S, rekap 14 laporan keuangan mingguan, kendala dan solusi, serta evaluasi untuk proyek berikutnya.</p>
+   <dl class="meta"><div><dt>Peran</dt><dd>Staf Pembangunan · penyusun dokumentasi proyek</dd></div><div><dt>Tools</dt><dd>SketchUp · MS Word · MS Excel</dd></div><div><dt>Output</dt><dd>Laporan 56 hlm, 12 lembar gambar kerja</dd></div></dl>
+   <div class="nums"><div><strong>14</strong><span>minggu</span></div><div><strong>19</strong><span>pekerja · 853,5 HOK</span></div></div>
+  </div>
+ </article>
+
+ <article class="proj">
+  <div class="pm g2">
+   <figure class="main"><img loading="lazy" src="assets/t-rumah-klinik.jpg" alt="Render rumah klinik"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/t-klinik-drone.jpg" alt="Foto drone klinik hasil jadi"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/t-kia.jpg" alt="Render interior ruang KIA"></figure>
+  </div>
+  <div class="pt">
+   <p class="mono">F-03 · 2022–2024 · 3D & Visual Identity</p>
+   <h3>Klinik Pratama Rawat Inap Darussyifa</h3>
+   <p>Dari model 3D sampai papan layanan. Saya membuat model dan render gedung, rumah klinik, taman, dan interior ruang KIA, lalu melanjutkan ke video visualisasi, animasi logo, neon box daftar layanan, dan cover berita acara. Foto drone hasil jadi memperlihatkan desain yang benar-benar terbangun.</p>
+   <dl class="meta"><div><dt>Lingkup</dt><dd>Model 3D · render · video · signage · logo animation</dd></div><div><dt>Tools</dt><dd>SketchUp · Premiere Pro · CorelDRAW</dd></div></dl>
+  </div>
+ </article>
+
+ <article class="proj">
+  <div class="pm g2">
+   <figure class="main"><img loading="lazy" src="assets/g-cafe-coming.jpg" alt="Teaser Brilliant Cafe Is Coming"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/g-najeeh.jpg" alt="Poster Najeeh"></figure>
+   <figure class="sub"><img loading="lazy" src="assets/g-menu-3.jpg" alt="Poster dessert menu"></figure>
+  </div>
+  <div class="pt">
+   <p class="mono">F-04 · 2025 · Campaign Design</p>
+   <h3>Najeeh Bazaar × Brilliant Cafe</h3>
+   <p>Satu bazar kuliner dengan satu sistem visual: key visual, empat poster menu per kategori, banner menu panjang, teaser, wordmark, dan video. Palet merah-krem, tipografi tebal, dan fotografi makanan yang disusun ulang membuat semua materi terasa satu keluarga.</p>
+   <dl class="meta"><div><dt>Deliverable</dt><dd>Key visual · 4 poster · banner 5760 px · teaser · wordmark · video</dd></div><div><dt>Skill</dt><dd>Campaign design · layout · compositing · tipografi</dd></div></dl>
+  </div>
+ </article>
+</div></section>
+
+<section id="design"><div class="wrap">
+ <div class="label mono"><b>04</b> Graphic Design</div>
+ <h2>Galeri desain</h2>
+ <p class="lead" style="margin-bottom:36px">Pilihan karya editorial, poster, apparel, signage, dan tipografi untuk lembaga pendidikan, unit usaha, dan kegiatan siswa.</p>
+ <div class="chips" role="tablist">
+  <button class="chip on" data-f="all">Semua</button><button class="chip" data-f="poster">Poster</button><button class="chip" data-f="editorial">Editorial</button><button class="chip" data-f="apparel">Apparel</button><button class="chip" data-f="signage">Signage</button><button class="chip" data-f="type">Typography</button>
+ </div>
+ <div class="masonry" id="gallery"></div>
+</div></section>
+
+<section id="build" class="bp"><div class="wrap">
+ <div class="label mono"><b>05</b> 3D & Konstruksi</div>
+ <h2>Dari model, ke lapangan.</h2>
+ <p class="lead">Asrama Sudan dua lantai (2022): satu proyek yang tercatat utuh, dari desain 3D sampai gedung berdiri.</p>
+ <div class="steps">
+  <figure><img loading="lazy" src="assets/t-sudan-3d.jpg" alt="Desain 3D Sudan"><figcaption><b>01 · Desain 3D</b>Tampak samping 2 lantai</figcaption></figure>
+  <figure><img loading="lazy" src="assets/t-sudan-before.jpg" alt="Lokasi sebelum"><figcaption><b>02 · Sebelum</b>Lokasi sebelum pembongkaran</figcaption></figure>
+  <figure><img loading="lazy" src="assets/t-sudan-progress.jpg" alt="Progres bulan 9"><figcaption><b>03 · Progres</b>Bulan kesembilan</figcaption></figure>
+  <figure><img loading="lazy" src="assets/t-sudan-done.jpg" alt="Kondisi sekarang"><figcaption><b>04 · Hasil</b>Kondisi saat ini</figcaption></figure>
+ </div>
+ <div class="models">
+  <figure><img loading="lazy" src="assets/t-denah-gokp.jpg" alt="Masterplan kawasan"><figcaption>Masterplan kawasan (site model)</figcaption></figure>
+  <figure><img loading="lazy" src="assets/t-taman.jpg" alt="Taman klinik"><figcaption>Taman klinik & air mancur, render</figcaption></figure>
+  <figure><img loading="lazy" src="assets/t-dapur.jpg" alt="Dapur G3"><figcaption>Gedung dapur, model 3D</figcaption></figure>
+  <figure><img loading="lazy" src="assets/t-tabligh.jpg" alt="Tabligh Akbar"><figcaption>Venue Tabligh Akbar, layout 3D</figcaption></figure>
+  <figure><img loading="lazy" src="assets/t-apel.jpg" alt="Apel Tahunan"><figcaption>Terop Apel Tahunan 2025</figcaption></figure>
+  <figure><img loading="lazy" src="assets/c-suargo-denah.jpg" alt="Gambar kerja denah"><figcaption>Gambar kerja: denah kamar mandi lapangan</figcaption></figure>
+ </div>
+</div></section>
+
+<section id="video"><div class="wrap">
+ <div class="label mono"><b>06</b> Video & Motion</div>
+ <h2>Bergerak, bercerita.</h2>
+ <div class="vgrid" id="vgrid"></div>
+ <div class="vcats">
+  <div><strong>17</strong><span>Dokumentasi acara</span></div><div><strong>13</strong><span>Konten media sosial</span></div><div><strong>16</strong><span>Episode edukasi</span></div><div><strong>8</strong><span>Logo animation</span></div><div><strong>5</strong><span>Trailer & bumper</span></div><div><strong>4</strong><span>Visualisasi 3D</span></div>
+ </div>
+</div></section>
+
+<section id="exp"><div class="wrap">
+ <div class="label mono"><b>07</b> Pengalaman</div>
+ <ul class="tl">
+  <li><span class="yr">2022 — kini</span><div><b>Construction Designer / 3D Visualizer</b><span>Divisi Pembangunan & Pemeliharaan, Gontor Kampus 3</span></div></li>
+  <li><span class="yr">2022 — 2026</span><div><b>Tim Proyek Gedung Kampus</b><span>Asrama Sudan, Klinik Darussyifa, Ruang Penerimaan Tamu, Musholla Bapenta, Gudang Mekkah, Mess Lapangan</span></div></li>
+  <li><span class="yr">2024 — kini</span><div><b>Event Production & Venue Planning</b><span>Layout 3D, kebutuhan sarana, panggung, rigging, tenda, genset</span></div></li>
+  <li><span class="yr">2022 — kini</span><div><b>Pengajar & Pembimbing</b><span>Faraid, Balaghah, Tarbiyah · Wali kelas 2022–2024 · Mentor fotografi, videografi & sekretariat</span></div></li>
+  <li><span class="yr">—</span><div><b>Ketua Panitia Qurban</b><span>Koordinasi tim, logistik & distribusi, Gontor Kampus 3</span></div></li>
+  <li><span class="yr">2022</span><div><b>Sekretaris Panitia Ujian</b><span>Administrasi ujian institusi berskala besar</span></div></li>
+  <li><span class="yr">2021 — 2022</span><div><b>Secretary & Head of Finance</b><span>Darul Ma'rifat Distribution Center</span></div></li>
+  <li><span class="yr">2019 — 2020</span><div><b>Sekretaris & Koordinator Kesekretariatan</b><span>Pergantian pengurus organisasi pelajar · Dewan Pramuka · Tim media Drama Arena</span></div></li>
+ </ul>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+ <div class="label mono"><b>08</b> Kontak</div>
+ <h2>Punya proyek yang perlu divisualkan, direncanakan, atau didokumentasikan?</h2>
+ <p class="wa-row"><a class="mail" href="https://wa.me/6282226618091?text=Halo%20Deniko%2C%20saya%20melihat%20portofolio%20Anda." target="_blank" rel="noopener">WhatsApp: 0822-2661-8091</a><button class="chip" id="copy" type="button">Salin nomor</button></p>
+ <p style="color:var(--graphite)">Klik nomor di atas untuk langsung membuka chat WhatsApp, atau kirim pesan lewat form di bawah.</p>
+ <form class="cform" id="cform" novalidate>
+  <label>Nama<input name="nama" required maxlength="100" autocomplete="name"></label>
+  <label>Email atau WhatsApp<input name="kontak" required maxlength="120" autocomplete="email"></label>
+  <label class="full">Pesan<textarea name="pesan" required maxlength="3000"></textarea></label>
+  <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+  <div class="full" style="display:flex;gap:16px;flex-wrap:wrap"><button class="btn solid" type="submit">Kirim pesan</button><span id="cstatus" role="status"></span></div>
+ </form>
+</div></section>
+
+<footer><div class="wrap mono"><span>© 2026 Deniko Fadila Fasha</span><span>Kediri, Jawa Timur</span></div></footer>
+
+<div id="lb" role="dialog" aria-modal="true"><button aria-label="Tutup">×</button><img alt=""><div class="vf" hidden></div><p></p></div>
+
+<script src="js/config.js"></script>
+<script>
+let G=[
+["g-wardun","WARDUN","Cover majalah: depan, punggung & versi Arab","editorial"],
+["g-me-cover","Mechanical Electrical","Cover dokumentasi instalasi klinik","editorial"],
+["a-pdl-back","PDL 100 Tahun","Seragam lapangan, tampak belakang","apparel"],
+["g-public-speaking","Satria Andri","Poster lomba pidato, photo manipulation","poster"],
+["g-laporan-harian","Laporan Harian Pembangunan","Cover laporan 2023–2024","editorial"],
+["g-seven","SEVEN Never Die","Key visual kejuaraan pramuka","poster"],
+["g-neonbox","Neon Box Klinik","Daftar layanan klinik rawat inap","signage"],
+["g-gd-patron","General Discussion · Patron","Seri story 9:16","poster"],
+["a-porseni","Jersey PORSENI","Set seragam The Brilliant Generation","apparel"],
+["g-moto","MOTO","Ornamen gerbang untuk aula","editorial"],
+["g-logo-cafe","Brilliant Cafe","Wordmark 3D","type"],
+["g-menu-1","Special Menu","Seri poster Najeeh Bazaar","poster"],
+["g-rotc","Road to One Century","Banner kelas","poster"],
+["a-pdl-staf","PDL Staf Pembangunan","Presentasi desain seragam","apparel"],
+["g-kriteria","14 Kriteria Pemimpin","Halaman buku agenda","editorial"],
+["g-logo-cafeliant","Cafeliant","Wordmark script","type"],
+["g-gd-luminaries","General Discussion · Luminaries","Seri story 9:16","poster"],
+["g-welcome","Selamat Datang","Wallpaper sambutan tamu institusi","signage"],
+["a-jersey-front","Always Be Better","Jersey olahraga","apparel"],
+["g-menu-2","Special Jama'atan","Seri poster Najeeh Bazaar","poster"],
+["g-berita-acara","Berita Acara Klinik","Cover dokumen layanan","editorial"],
+["g-logo-drama","English Drama Contest","Judul tipografi","type"],
+["g-teaching","Teaching Practice","Story 100 Years of Excellence","poster"],
+["a-surveyor","Surveyor","Kaos tim, depan & belakang","apparel"],
+["g-menu-4","Street Food","Seri poster Najeeh Bazaar","poster"]];
+// Video: yt = ID YouTube (Unlisted), drive = ID file Google Drive (cadangan). Kosong = putar klip preview.
+let V=[
+{title:"Blueprint BPPM",sub:"Visualisasi gedung fotorealistis",badge:"3D Viz · 58s",thumb:"v-blueprint",clip:"v-blueprint",yt:"",drive:""},
+{title:"Logo Marhalah",sub:"Logo reveal metalik",badge:"4K · Logo",thumb:"v-marhalah",clip:"v-marhalah",yt:"",drive:""},
+{title:"The Brilliant Generation",sub:"Glitch logo reveal",badge:"Logo · 6s",thumb:"v-brilliant",clip:"v-brilliant",yt:"",drive:""},
+{title:"Logo PMB",sub:"Animasi logo geometris",badge:"Logo · 8s",thumb:"v-pmb",clip:"v-pmb",yt:"",drive:""},
+{title:"Kosakata Bahasa Arab",sub:"Seri konten edukasi anak",badge:"Seri · 16 ep",thumb:"v-edu",clip:"v-edu",yt:"",drive:""},
+{title:"Teaching Practice",sub:"Konten media sosial",badge:"Social · 30s",thumb:"v-teaching",clip:"v-teaching",yt:"",drive:""}];
+const API=((window.PORTFOLIO_CONFIG||{}).API_URL||'').trim();
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const idOk=s=>/^[\w-]{6,80}$/.test(s||'')?s:'';
+// Nama file tanpa garis miring = file di assets/, selain itu dianggap URL lengkap.
+const img=s=>!s?'':/^https:\/\//.test(s)?s:/^[\w-]+$/.test(s)?`assets/${s}.jpg`:'';
+const clipUrl=s=>!s?'':/^https:\/\//.test(s)?s:/^[\w-]+$/.test(s)?`assets/clips/${s}.mp4`:'';
+
+const gal=document.getElementById('gallery');
+function renderGallery(){gal.innerHTML=G.map(([f,t,d,c])=>`<figure data-c="${esc(c)}"><img loading="lazy" src="${esc(img(f))}" alt="${esc(t)}"><figcaption><b>${esc(t)}</b>${esc(d)}</figcaption></figure>`).join('');applyFilter();}
+let filt='all';
+function applyFilter(){gal.querySelectorAll('figure').forEach(fg=>fg.classList.toggle('hide',filt!=='all'&&fg.dataset.c!==filt));}
+document.querySelectorAll('.chips .chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chips .chip').forEach(x=>x.classList.toggle('on',x===b));filt=b.dataset.f;applyFilter();});
+
+const vg=document.getElementById('vgrid');
+const canHover=matchMedia('(hover:hover)').matches,calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let io;
+function renderVideos(){
+ if(io)io.disconnect();
+ vg.innerHTML=V.map((v,i)=>{const th=img(v.thumb)||(idOk(v.yt)?`https://i.ytimg.com/vi/${v.yt}/hqdefault.jpg`:'');const cl=clipUrl(v.clip);
+  return `<button class="vcard" type="button" data-i="${i}" aria-label="Putar video ${esc(v.title)}"><div class="th">${th?`<img loading="lazy" src="${esc(th)}" alt="">`:''}${cl?`<video muted loop playsinline preload="none" src="${esc(cl)}"></video>`:''}<span class="badge mono">${esc(v.badge)}</span><span class="play"></span></div><div class="t"><b>${esc(v.title)}</b><span>${esc(v.sub)}</span></div></button>`}).join('');
+ if(calm)return;
+ const play=c=>{const vd=c.querySelector('video');if(!vd)return;vd.play().then(()=>c.classList.add('playing')).catch(()=>{})};
+ const stop=c=>{const vd=c.querySelector('video');if(!vd)return;vd.pause();c.classList.remove('playing')};
+ if(canHover){vg.querySelectorAll('.vcard').forEach(c=>{c.onmouseenter=()=>play(c);c.onmouseleave=()=>stop(c);c.onfocus=()=>play(c);c.onblur=()=>stop(c);});}
+ else if('IntersectionObserver' in window){io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?play(e.target):stop(e.target)),{threshold:.6});vg.querySelectorAll('.vcard').forEach(c=>io.observe(c));}
+}
+
+const lb=document.getElementById('lb'),li=lb.querySelector('img'),lv=lb.querySelector('.vf'),lp=lb.querySelector('p');
+function openImg(src,cap){lv.hidden=true;lv.innerHTML='';li.hidden=false;li.src=src;lp.textContent=cap;lb.classList.add('on');}
+function openVideo(v){
+ const yt=idOk(v.yt),dr=idOk(v.drive);li.hidden=true;lv.hidden=false;
+ if(yt)lv.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${yt}?autoplay=1&rel=0&playsinline=1" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+ else if(dr)lv.innerHTML=`<iframe src="https://drive.google.com/file/d/${dr}/preview" title="${esc(v.title)}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+ else lv.innerHTML=`<video src="${esc(clipUrl(v.clip))}" controls autoplay muted loop playsinline></video>`;
+ lp.textContent=v.title+(v.sub?' · '+v.sub:'')+(yt||dr?'':' (cuplikan)');lb.classList.add('on');vg.querySelectorAll('video').forEach(x=>x.pause());
+}
+function closeLb(){lb.classList.remove('on');lv.innerHTML='';}
+document.addEventListener('click',e=>{
+ const vc=e.target.closest('.vcard');if(vc){openVideo(V[+vc.dataset.i]);return;}
+ const fg=e.target.closest('.masonry figure,.pm figure,.steps figure,.models figure');if(!fg)return;const im=fg.querySelector('img');openImg(im.src,(fg.querySelector('figcaption')||{}).textContent||im.alt);});
+lb.onclick=e=>{if(e.target===lb||e.target.tagName==='BUTTON')closeLb()};
+document.getElementById('copy').onclick=async e=>{try{await navigator.clipboard.writeText('082226618091');e.target.textContent='Tersalin'}catch(_){e.target.textContent='0822-2661-8091'}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
+
+renderGallery();renderVideos();
+
+// Konten dari Google Sheet lewat Apps Script; kalau gagal, data statis di atas tetap dipakai.
+if(API){
+ const ctl=new AbortController();setTimeout(()=>ctl.abort(),8000);
+ fetch(API+(API.includes('?')?'&':'?')+'action=content',{signal:ctl.signal}).then(r=>r.json()).then(d=>{
+  if(!d||!d.ok)return;
+  if(Array.isArray(d.gallery)&&d.gallery.length){G=d.gallery.filter(g=>g.thumbnail&&g.judul).map(g=>[g.thumbnail,g.judul,g.deskripsi,String(g.kategori||'').toLowerCase()]);renderGallery();}
+  if(Array.isArray(d.videos)&&d.videos.length){V=d.videos.filter(v=>v.judul).map(v=>({title:v.judul,sub:v.keterangan,badge:v.badge,thumb:v.thumbnail,clip:v.clip,yt:v.youtube_id,drive:v.drive_id}));renderVideos();}
+ }).catch(()=>{});
+}
+
+// Form kontak. Dikirim sebagai text/plain supaya tidak memicu preflight CORS di Apps Script.
+const cf=document.getElementById('cform'),cs=document.getElementById('cstatus');
+const waLink=t=>'https://wa.me/6282226618091?text='+encodeURIComponent(t);
+cf.onsubmit=async e=>{
+ e.preventDefault();cs.className='';
+ const f=Object.fromEntries(new FormData(cf));
+ if(f.website)return;
+ if(!f.nama.trim()||!f.kontak.trim()||!f.pesan.trim()){cs.textContent='Mohon isi nama, kontak, dan pesan.';return;}
+ const text=`Halo Deniko, saya ${f.nama.trim()} (${f.kontak.trim()}).\n\n${f.pesan.trim()}`;
+ if(!API){window.open(waLink(text),'_blank','noopener');cs.textContent='Membuka WhatsApp…';return;}
+ let last=0;try{last=+localStorage.getItem('cf_last')||0}catch(_){}
+ if(Date.now()-last<60000){cs.textContent='Pesan baru saja terkirim. Coba lagi sebentar lagi.';return;}
+ const btn=cf.querySelector('button');btn.disabled=true;cs.textContent='Mengirim…';
+ try{
+  const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'contact',...f,page:location.href})});
+  const d=await r.json();
+  if(!d.ok)throw Object.assign(new Error(d.error||''),{server:true});
+  try{localStorage.setItem('cf_last',Date.now())}catch(_){}
+  cf.reset();cs.className='ok';cs.textContent='Terima kasih, pesan Anda sudah terkirim.';
+ }catch(err){
+  cs.innerHTML=`Pesan belum terkirim${err.server&&err.message?' ('+esc(err.message)+')':''}. <a href="${esc(waLink(text))}" target="_blank" rel="noopener">Kirim lewat WhatsApp</a>.`;
+ }finally{btn.disabled=false}
+};
+</script>
+</body>
+</html>
