@@ -134,6 +134,9 @@ nav ul a:hover{color:var(--ink)}
 .vcats{display:flex;flex-wrap:wrap;gap:0;margin-top:28px;border:1px solid var(--line)}
 .vcats div{flex:1 1 150px;padding:16px 18px;border-left:1px solid var(--line)}
 .vcats div:first-child{border-left:0}
+.arch{margin-top:72px}
+#vmore{margin-top:24px;cursor:pointer;background:transparent;color:var(--ink);font-family:var(--sans)}
+#vmore[hidden]{display:none}
 .vcats strong{font-family:var(--serif);font-size:28px;font-weight:400;display:block}
 .vcats span{font-size:13px;color:var(--graphite)}
 /* timeline */
@@ -333,6 +336,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
  <div class="vcats">
   <div><strong>17</strong><span>Dokumentasi acara</span></div><div><strong>13</strong><span>Konten media sosial</span></div><div><strong>16</strong><span>Episode edukasi</span></div><div><strong>8</strong><span>Logo animation</span></div><div><strong>5</strong><span>Trailer & bumper</span></div><div><strong>4</strong><span>Visualisasi 3D</span></div>
  </div>
+ <div class="arch">
+  <h3>Arsip video</h3>
+  <p class="lead" style="margin:8px 0 24px">Semua video, dikelompokkan per kategori. Klik kartu untuk menonton versi penuh.</p>
+  <div class="chips" id="vchips"></div>
+  <div class="vgrid" id="varch"></div>
+  <button class="btn" id="vmore" type="button" hidden></button>
+ </div>
 </div></section>
 
 <section id="exp"><div class="wrap">
@@ -368,6 +378,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <div id="lb" role="dialog" aria-modal="true"><button aria-label="Tutup">×</button><img alt=""><div class="vf" hidden></div><p></p></div>
 
 <script src="js/config.js"></script>
+<script src="js/videos.js"></script>
 <script>
 let G=[
 ["g-wardun","WARDUN","Cover majalah: depan, punggung & versi Arab","editorial"],
@@ -407,28 +418,47 @@ const API=((window.PORTFOLIO_CONFIG||{}).API_URL||'').trim();
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const idOk=s=>/^[\w-]{6,80}$/.test(s||'')?s:'';
 // Nama file tanpa garis miring = file di assets/, selain itu dianggap URL lengkap.
-const img=s=>!s?'':/^https:\/\//.test(s)?s:/^[\w-]+$/.test(s)?`assets/${s}.jpg`:'';
+const img=s=>!s?'':/^https:\/\//.test(s)?s:/^[\w-]+(\/[\w-]+)?$/.test(s)?`assets/${s}.jpg`:'';
 const clipUrl=s=>!s?'':/^https:\/\//.test(s)?s:/^[\w-]+$/.test(s)?`assets/clips/${s}.mp4`:'';
 
 const gal=document.getElementById('gallery');
 function renderGallery(){gal.innerHTML=G.map(([f,t,d,c])=>`<figure data-c="${esc(c)}"><img loading="lazy" src="${esc(img(f))}" alt="${esc(t)}"><figcaption><b>${esc(t)}</b>${esc(d)}</figcaption></figure>`).join('');applyFilter();}
 let filt='all';
 function applyFilter(){gal.querySelectorAll('figure').forEach(fg=>fg.classList.toggle('hide',filt!=='all'&&fg.dataset.c!==filt));}
-document.querySelectorAll('.chips .chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chips .chip').forEach(x=>x.classList.toggle('on',x===b));filt=b.dataset.f;applyFilter();});
+document.querySelectorAll('#design .chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('#design .chip').forEach(x=>x.classList.toggle('on',x===b));filt=b.dataset.f;applyFilter();});
 
-const vg=document.getElementById('vgrid');
+const vg=document.getElementById('vgrid'),va=document.getElementById('varch');
 const canHover=matchMedia('(hover:hover)').matches,calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-let io;
-function renderVideos(){
- if(io)io.disconnect();
- vg.innerHTML=V.map((v,i)=>{const th=img(v.thumb)||(idOk(v.yt)?`https://i.ytimg.com/vi/${v.yt}/hqdefault.jpg`:'');const cl=clipUrl(v.clip);
+const play=c=>{const vd=c.querySelector('video');if(!vd)return;vd.play().then(()=>c.classList.add('playing')).catch(()=>{})};
+const stop=c=>{const vd=c.querySelector('video');if(!vd)return;vd.pause();c.classList.remove('playing')};
+const io='IntersectionObserver' in window&&!canHover?new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?play(e.target):stop(e.target)),{threshold:.6}):null;
+// Kartu menyimpan daftar videonya di elemen grid (el._list), dipakai saat kartu diklik.
+function renderCards(el,list){
+ el.querySelectorAll('.vcard').forEach(c=>io&&io.unobserve(c));
+ el._list=list;
+ el.innerHTML=list.map((v,i)=>{const th=img(v.thumb)||(idOk(v.yt)?`https://i.ytimg.com/vi/${v.yt}/hqdefault.jpg`:'');const cl=clipUrl(v.clip);
   return `<button class="vcard" type="button" data-i="${i}" aria-label="Putar video ${esc(v.title)}"><div class="th">${th?`<img loading="lazy" src="${esc(th)}" alt="">`:''}${cl?`<video muted loop playsinline preload="none" src="${esc(cl)}"></video>`:''}<span class="badge mono">${esc(v.badge)}</span><span class="play"></span></div><div class="t"><b>${esc(v.title)}</b><span>${esc(v.sub)}</span></div></button>`}).join('');
  if(calm)return;
- const play=c=>{const vd=c.querySelector('video');if(!vd)return;vd.play().then(()=>c.classList.add('playing')).catch(()=>{})};
- const stop=c=>{const vd=c.querySelector('video');if(!vd)return;vd.pause();c.classList.remove('playing')};
- if(canHover){vg.querySelectorAll('.vcard').forEach(c=>{c.onmouseenter=()=>play(c);c.onmouseleave=()=>stop(c);c.onfocus=()=>play(c);c.onblur=()=>stop(c);});}
- else if('IntersectionObserver' in window){io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?play(e.target):stop(e.target)),{threshold:.6});vg.querySelectorAll('.vcard').forEach(c=>io.observe(c));}
+ el.querySelectorAll('.vcard').forEach(c=>{if(canHover){c.onmouseenter=()=>play(c);c.onmouseleave=()=>stop(c);c.onfocus=()=>play(c);c.onblur=()=>stop(c);}else if(io)io.observe(c);});
 }
+function renderVideos(){renderCards(vg,V)}
+
+// Arsip: data dari js/videos.js. Tab "Semua" menampilkan 9 dulu, kategori menampilkan semuanya.
+const VA=(window.VIDEO_ARCHIVE||[]).map(v=>({...v,sub:(window.VIDEO_CATS||{})[v.cat]||''}));
+const vchips=document.getElementById('vchips'),vmore=document.getElementById('vmore');
+let vcat='all',vall=false;
+function renderArchive(){
+ const list=VA.filter(v=>vcat==='all'||v.cat===vcat),lim=vcat==='all'&&!vall?9:list.length;
+ renderCards(va,list.slice(0,lim));
+ vmore.hidden=lim>=list.length;vmore.textContent=`Tampilkan semua (${list.length})`;
+}
+if(VA.length){
+ const cats=Object.entries(window.VIDEO_CATS||{}).filter(([k])=>VA.some(v=>v.cat===k));
+ vchips.innerHTML=`<button class="chip on" data-f="all" type="button">Semua (${VA.length})</button>`+cats.map(([k,l])=>`<button class="chip" data-f="${esc(k)}" type="button">${esc(l)} (${VA.filter(v=>v.cat===k).length})</button>`).join('');
+ vchips.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;vchips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));vcat=b.dataset.f;vall=false;renderArchive();};
+ vmore.onclick=()=>{vall=true;renderArchive();};
+ renderArchive();
+}else document.querySelector('.arch').hidden=true;
 
 const lb=document.getElementById('lb'),li=lb.querySelector('img'),lv=lb.querySelector('.vf'),lp=lb.querySelector('p');
 function openImg(src,cap){lv.hidden=true;lv.innerHTML='';li.hidden=false;li.src=src;lp.textContent=cap;lb.classList.add('on');}
@@ -441,7 +471,7 @@ function openVideo(v){
 }
 function closeLb(){lb.classList.remove('on');lv.innerHTML='';}
 document.addEventListener('click',e=>{
- const vc=e.target.closest('.vcard');if(vc){openVideo(V[+vc.dataset.i]);return;}
+ const vc=e.target.closest('.vcard');if(vc){openVideo(vc.parentElement._list[+vc.dataset.i]);return;}
  const fg=e.target.closest('.masonry figure,.pm figure,.steps figure,.models figure');if(!fg)return;const im=fg.querySelector('img');openImg(im.src,(fg.querySelector('figcaption')||{}).textContent||im.alt);});
 lb.onclick=e=>{if(e.target===lb||e.target.tagName==='BUTTON')closeLb()};
 document.getElementById('copy').onclick=async e=>{try{await navigator.clipboard.writeText('082226618091');e.target.textContent='Tersalin'}catch(_){e.target.textContent='0822-2661-8091'}};
